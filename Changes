@@ -19,3 +19,7 @@ Revision history for Perl extension Data::Void.
 0.04   Tue Sep 24 11:24:00 2002
 	- added tests
 	- corrected packaging
+	
+	
+0.05   Wed Nov 27 11:24:00 2002
+	- something went horribly wrong on CPAN

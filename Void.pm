@@ -2,7 +2,7 @@ package Class::Void;
 use strict;
 use warnings;
 use vars qw($VERSION $Nothin $new); 
-$VERSION = 0.04;
+$VERSION = 0.05;
 
 use overload q("")     => sub { "" },  # stringify to the empty string (returning undef is poised to create warnings)
             "nomethod" => sub { shift->new }; # call new for all other overloadable operators
