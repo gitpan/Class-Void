@@ -1,16 +1,19 @@
 package Class::Void;
 use strict;
 use warnings;
-use vars qw($VERSION); 
-$VERSION = '0.01';
+use vars qw($VERSION $Nothin $new); 
+$VERSION = '0.02';
 
-use overload q("")     => sub {},              # stringify to undef
-            "nomethod" => sub { shift->new };  # return a new object for all other overloadable operators
+use overload q("")     => sub { "" },         # stringify to the empty string
+            "nomethod" => sub { shift->new }; # return a new object for all other overloadable operators
+
+$new = sub {
+	my $scalar;
+	$Nothin = bless \$scalar;
+};
 
 sub new {
-	my $class  = shift;	  
-	my $scalar;
-	bless \$scalar, ref $class || $class;
+	defined $Nothin ? $Nothin : &$new # define $Nothin once, afterwards return it and never create another object in the same session
 }
 
 sub AUTOLOAD {
@@ -36,22 +39,24 @@ Class::Void - A class that stringifies to nothing for whatever you do with it
   
   $object->foo->bar("baz")->foo;
   print $object->employees("bob_smith")->age;
-  print ($object->bla("test")->foo->bar->baz * 2 / 2) * $object ** 8;
+  print $object->bla("test")->foo->bar->baz * 2 / 2 * $object ** 8;
 
 =head1 DESCRIPTION
 
 All method calls against this class or one of its instances return
-another instance of the class. The behavior is the same for operations. 
-Stringification returns undef. Thats about it.
+another instance of the class. The behavior is the same for operations
+against its instances. Stringification returns the empty string which means
+you can do pretty much everything with this module, in the end you always
+get nothing.
 
 =head1 "Why the hell would I need that?"
 
 Everytime you have some class which isn't quite finished or which doesnt
 provide a way to quietly do nothing, you can use this module as a stub
-or a plug for the hole. This might be a web-based database maintenance
+or a plug for the hole. It might be a web-based database maintenance
 tool, where you quickly need an empty page for new entries or a leave
 in a tree that needs something which doesnt die on method calls but which
-doesnt take much memory, too.
+doesnt take much memory, either.
 
 I'd be very interested in other uses, so please drop me a mail if you did
 something fancy with this module.
