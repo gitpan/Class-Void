@@ -15,3 +15,7 @@ Revision history for Perl extension Data::Void.
 	- fixed some typos in the docs
 	- added exceptions to the docs
 	- fixed private sub &$new to work with inheritance
+
+0.04   Tue Sep 24 11:24:00 2002
+	- added tests
+	- corrected packaging

@@ -4,5 +4,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     'NAME'		=> 'Class::Void',
     'VERSION_FROM'	=> 'Void.pm', # finds $VERSION
-    'PREREQ_PM'		=> {}, # e.g., Module::Name => 1.1
+    'PREREQ_PM'		=> {
+    	Test::Simple => 0.45
+    }, # e.g., Module::Name => 1.1
 );
